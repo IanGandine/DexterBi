@@ -42,7 +42,7 @@
         .stagger-4 { animation-delay: 0.4s; }
         
         .logo-img {
-            height: 45px; /* Aumentei um pouco mais a logo */
+            height: 45px;
             width: auto;
         }
     </style>
@@ -54,7 +54,6 @@
             <div class="flex justify-between items-center h-20">
                 <div class="flex items-center">
                     <div class="flex-shrink-0 flex items-center">
-                        <!-- Logo apenas, sem texto -->
                         <img src="src/logo-website.png" alt="DexterBI Logo" class="logo-img">
                     </div>
                 </div>
@@ -350,11 +349,11 @@
                 
                 <div class="bg-gray-50 p-8 rounded-xl">
                     <form id="contact-form" class="space-y-6" action="https://formsubmit.co/dexterbicontato@gmail.com" method="POST">
-                        <!-- Configurações do FormSubmit -->
+                        <!-- Configurações simples do FormSubmit -->
                         <input type="hidden" name="_subject" value="Novo contato do site DexterBI">
-                        <input type="hidden" name="_template" value="table">
-                        <input type="hidden" name="_next" value="https://seusite.com/obrigado.html">
+                        <input type="hidden" name="_template" value="basic">
                         <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_autoresponse" value="Obrigado pelo seu contato! Recebemos sua mensagem e retornaremos em breve.">
                         
                         <div>
                             <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
@@ -391,7 +390,6 @@
             <div class="grid md:grid-cols-4 gap-8">
                 <div>
                     <div class="flex items-center mb-4">
-                        <!-- Logo apenas no footer também -->
                         <img src="src/logo-website.png" alt="DexterBI Logo" class="h-8 w-8 mr-2">
                     </div>
                     <p class="text-gray-400">
@@ -467,14 +465,16 @@
             });
         });
 
-        // Contact form submission (manter para feedback visual)
+        // Contact form submission
         document.getElementById('contact-form').addEventListener('submit', function(e) {
-            // O FormSubmit cuidará do envio, mas podemos manter o feedback visual
+            // Não prevenir o comportamento padrão - deixar o FormSubmit funcionar
             const formData = new FormData(this);
             const name = formData.get('name');
             
             // Feedback visual imediato
             alert(`Thank you, ${name}! Your message has been sent successfully. We'll get back to you soon.`);
+            
+            // O FormSubmit cuidará do redirecionamento e envio do email
         });
 
         // Add active state to navigation based on scroll position
