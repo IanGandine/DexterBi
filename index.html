@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DexterBI - Enterprise Business Intelligence Solutions</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <style>
         body {
             box-sizing: border-box;
@@ -47,8 +46,81 @@
             width: auto;
         }
         
-        .loading {
+        /* Modal Styles */
+        .modal {
             display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        
+        .modal-content {
+            position: relative;
+            background: white;
+            margin: 5% auto;
+            padding: 0;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        .close-button {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #6b7280;
+        }
+        
+        .close-button:hover {
+            color: #374151;
+        }
+        
+        .schedule-btn {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .schedule-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+        }
+        
+        .time-slot {
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            margin: 8px 0;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .time-slot:hover {
+            border-color: #10b981;
+            background: #f0fdf4;
+        }
+        
+        .time-slot.selected {
+            border-color: #10b981;
+            background: #10b981;
+            color: white;
         }
     </style>
 </head>
@@ -68,7 +140,12 @@
                         <a href="#services" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Services</a>
                         <a href="#solutions" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Solutions</a>
                         <a href="#about" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">About</a>
-                        <a href="#contact" class="bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-indigo-700 transition-colors">Contact</a>
+                        <button onclick="openScheduleModal()" class="schedule-btn text-sm">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/>
+                            </svg>
+                            Schedule a Discovery!
+                        </button>
                     </div>
                 </div>
                 <div class="md:hidden">
@@ -86,7 +163,12 @@
                 <a href="#services" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Services</a>
                 <a href="#solutions" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Solutions</a>
                 <a href="#about" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">About</a>
-                <a href="#contact" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Contact</a>
+                <button onclick="openScheduleModal()" class="block w-full text-left px-3 py-2 text-gray-700 hover:text-indigo-600 flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/>
+                    </svg>
+                    Schedule a Discovery!
+                </button>
             </div>
         </div>
     </nav>
@@ -103,8 +185,11 @@
                     DexterBI delivers enterprise-grade business intelligence solutions, custom dashboards, and end-to-end data analytics to drive your business forward.
                 </p>
                 <div class="space-x-4 fade-in stagger-2">
-                    <button onclick="scrollToSection('contact')" class="bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-                        Get Started
+                    <button onclick="openScheduleModal()" class="schedule-btn px-8 py-3 text-lg">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/>
+                        </svg>
+                        Schedule a Discovery!
                     </button>
                     <button onclick="scrollToSection('services')" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-indigo-600 transition-colors">
                         Learn More
@@ -165,6 +250,15 @@
                     <p class="text-gray-600">From data collection to visualization, we handle every aspect of your business intelligence journey.</p>
                 </div>
             </div>
+            
+            <div class="text-center mt-12">
+                <button onclick="openScheduleModal()" class="schedule-btn">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/>
+                    </svg>
+                    Schedule a Discovery Call
+                </button>
+            </div>
         </div>
     </section>
 
@@ -224,6 +318,15 @@
                     </ul>
                 </div>
             </div>
+            
+            <div class="text-center mt-12">
+                <button onclick="openScheduleModal()" class="schedule-btn">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/>
+                    </svg>
+                    Book Your Discovery Session
+                </button>
+            </div>
         </div>
     </section>
 
@@ -274,6 +377,15 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <div class="mt-8">
+                        <button onclick="openScheduleModal()" class="schedule-btn">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/>
+                            </svg>
+                            Let's Talk About Your Project
+                        </button>
+                    </div>
                 </div>
                 
                 <div class="bg-white p-8 rounded-xl shadow-lg">
@@ -300,144 +412,34 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Ready to Transform Your Data?</h2>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                    Let's discuss how DexterBI can help you unlock the power of your business data
-                </p>
-            </div>
-            
-            <div class="grid lg:grid-cols-2 gap-12">
-                <div>
-                    <h3 class="text-2xl font-semibold text-gray-900 mb-6">Get in Touch</h3>
-                    <div class="space-y-6">
-                        <div class="flex items-center">
-                            <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mr-4">
-                                <svg class="w-6 h-6 text-indigo-600" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <div class="font-semibold text-gray-900">Email</div>
-                                <div class="text-gray-600">dexterbicontato@gmail.com</div>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-center">
-                            <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mr-4">
-                                <svg class="w-6 h-6 text-indigo-600" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <div class="font-semibold text-gray-900">Phone</div>
-                                <div class="text-gray-600">+55 27 99255-0981</div>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-center">
-                            <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mr-4">
-                                <svg class="w-6 h-6 text-indigo-600" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <div class="font-semibold text-gray-900">Office</div>
-                                <div class="text-gray-600">Vitória, ES, Brazil</div>
-                            </div>
-                        </div>
+    <!-- Schedule Modal -->
+    <div id="scheduleModal" class="modal">
+        <div class="modal-content">
+            <button class="close-button" onclick="closeScheduleModal()">&times;</button>
+            <div class="p-8">
+                <h2 class="text-2xl font-bold text-gray-900 mb-2">Schedule a Discovery Call</h2>
+                <p class="text-gray-600 mb-6">Choose a time that works for you for a 30-minute Google Meet call</p>
+                
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">Available Time Slots</h3>
+                    <div id="time-slots" class="space-y-2">
+                        <!-- Time slots will be populated by JavaScript -->
                     </div>
                 </div>
                 
-                <div class="bg-gray-50 p-8 rounded-xl">
-                    <form id="contact-form" class="space-y-6">
-                        <div>
-                            <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
-                            <input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
-                        </div>
-                        
-                        <div>
-                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-                            <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
-                        </div>
-                        
-                        <div>
-                            <label for="company" class="block text-sm font-medium text-gray-700 mb-2">Company</label>
-                            <input type="text" id="company" name="company" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
-                        </div>
-                        
-                        <div>
-                            <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message</label>
-                            <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"></textarea>
-                        </div>
-                        
-                        <button type="submit" class="w-full bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-colors flex items-center justify-center">
-                            <span id="submit-text">Send Message</span>
-                            <div id="loading-spinner" class="loading ml-2">
-                                <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                </svg>
-                            </div>
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-4 gap-8">
-                <div>
-                    <div class="flex items-center mb-4">
-                        <img src="src/logo-website.png" alt="DexterBI Logo" class="h-8 w-8 mr-2">
-                    </div>
-                    <p class="text-gray-400">
-                        Transforming enterprise data into intelligent business insights.
+                <div class="bg-blue-50 p-4 rounded-lg mb-6">
+                    <p class="text-sm text-blue-700">
+                        <strong>Note:</strong> After selecting a time, you'll be redirected to Google Calendar to confirm your booking. 
+                        The meeting will be held via Google Meet.
                     </p>
                 </div>
                 
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">Services</h3>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white transition-colors">Custom Dashboards</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Data Analytics</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">BI Solutions</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Consulting</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">Industries</h3>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white transition-colors">Financial Services</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Retail & E-commerce</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Manufacturing</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Healthcare</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">Connect</h3>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white transition-colors">LinkedIn</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Twitter</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Newsletter</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2024 DexterBI. All rights reserved. | Privacy Policy | Terms of Service</p>
+                <button id="confirm-booking" class="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                    Confirm & Schedule on Google Calendar
+                </button>
             </div>
         </div>
-    </footer>
+    </div>
 
     <script>
         // Mobile menu toggle
@@ -470,87 +472,111 @@
             });
         });
 
-        // Resend configuration - SUA CHAVE AQUI
-        const RESEND_API_KEY = 're_LZxw7Gg1_4EcjNDCcSNbbHiaRmQjzuizy';
+        // Schedule Modal Functions
+        let selectedTimeSlot = null;
 
-        // Contact form submission with Resend
-        document.getElementById('contact-form').addEventListener('submit', async function(e) {
-            e.preventDefault();
+        function openScheduleModal() {
+            document.getElementById('scheduleModal').style.display = 'block';
+            populateTimeSlots();
+        }
+
+        function closeScheduleModal() {
+            document.getElementById('scheduleModal').style.display = 'none';
+            selectedTimeSlot = null;
+            document.getElementById('confirm-booking').disabled = true;
+        }
+
+        function populateTimeSlots() {
+            const timeSlotsContainer = document.getElementById('time-slots');
+            timeSlotsContainer.innerHTML = '';
             
-            const submitButton = this.querySelector('button[type="submit"]');
-            const submitText = document.getElementById('submit-text');
-            const loadingSpinner = document.getElementById('loading-spinner');
-            
-            // Show loading state
-            submitText.textContent = 'Enviando...';
-            loadingSpinner.style.display = 'inline-block';
-            submitButton.disabled = true;
-            
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                company: document.getElementById('company').value,
-                message: document.getElementById('message').value
-            };
-            
-            try {
-                const response = await axios.post('https://api.resend.com/emails', {
-                    from: 'DexterBI Website <onboarding@resend.dev>',
-                    to: ['dexterbicontato@gmail.com'],
-                    reply_to: formData.email,
-                    subject: `Novo contato de ${formData.name} - DexterBI`,
-                    html: `
-                        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-                            <h2 style="color: #4f46e5;">Novo contato do site DexterBI</h2>
-                            <div style="background: #f9fafb; padding: 20px; border-radius: 8px; margin: 20px 0;">
-                                <p><strong>Nome:</strong> ${formData.name}</p>
-                                <p><strong>Email:</strong> ${formData.email}</p>
-                                <p><strong>Empresa:</strong> ${formData.company || 'Não informado'}</p>
-                                <p><strong>Mensagem:</strong></p>
-                                <p style="background: white; padding: 15px; border-radius: 5px; border-left: 4px solid #4f46e5;">${formData.message}</p>
-                            </div>
-                            <hr style="border: none; border-top: 1px solid #e5e7eb;">
-                            <p style="color: #6b7280; font-size: 12px;">Enviado em: ${new Date().toLocaleString('pt-BR')}</p>
+            // Sample time slots - you can customize these based on your availability
+            const timeSlots = [
+                { time: '09:00', date: 'Tomorrow', available: true },
+                { time: '10:30', date: 'Tomorrow', available: true },
+                { time: '14:00', date: 'Tomorrow', available: true },
+                { time: '15:30', date: 'Tomorrow', available: true },
+                { time: '11:00', date: 'In 2 days', available: true },
+                { time: '13:00', date: 'In 2 days', available: true },
+                { time: '16:00', date: 'In 2 days', available: true },
+                { time: '09:30', date: 'In 3 days', available: true },
+                { time: '14:30', date: 'In 3 days', available: true }
+            ];
+
+            timeSlots.forEach(slot => {
+                const slotElement = document.createElement('div');
+                slotElement.className = `time-slot ${slot.available ? 'available' : 'unavailable'}`;
+                slotElement.innerHTML = `
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <div class="font-semibold">${slot.time}</div>
+                            <div class="text-sm text-gray-500">${slot.date}</div>
                         </div>
-                    `,
-                    text: `
-                        Novo contato do site DexterBI
-                        
-                        Nome: ${formData.name}
-                        Email: ${formData.email}
-                        Empresa: ${formData.company || 'Não informado'}
-                        
-                        Mensagem:
-                        ${formData.message}
-                        
-                        Enviado em: ${new Date().toLocaleString('pt-BR')}
-                    `
-                }, {
-                    headers: {
-                        'Authorization': `Bearer ${RESEND_API_KEY}`,
-                        'Content-Type': 'application/json'
-                    }
-                });
+                        ${slot.available ? 
+                            '<div class="text-green-600 text-sm">Available</div>' : 
+                            '<div class="text-red-600 text-sm">Unavailable</div>'
+                        }
+                    </div>
+                `;
                 
-                console.log('Email enviado com sucesso:', response.data);
-                alert(`Obrigado, ${formData.name}! Sua mensagem foi enviada com sucesso. Retornaremos em breve.`);
-                this.reset();
-                
-            } catch (error) {
-                console.error('Erro detalhado ao enviar email:', error);
-                
-                // Mostrar erro mais específico
-                if (error.response) {
-                    console.error('Resposta do erro:', error.response.data);
-                    alert(`Erro ${error.response.status}: ${error.response.data.message || 'Erro ao enviar mensagem'}`);
+                if (slot.available) {
+                    slotElement.addEventListener('click', () => selectTimeSlot(slot, slotElement));
                 } else {
-                    alert('Erro de conexão. Por favor, tente novamente ou entre em contato diretamente por email.');
+                    slotElement.style.opacity = '0.6';
+                    slotElement.style.cursor = 'not-allowed';
                 }
-            } finally {
-                // Reset button state
-                submitText.textContent = 'Send Message';
-                loadingSpinner.style.display = 'none';
-                submitButton.disabled = false;
+                
+                timeSlotsContainer.appendChild(slotElement);
+            });
+        }
+
+        function selectTimeSlot(slot, element) {
+            // Remove selected class from all slots
+            document.querySelectorAll('.time-slot').forEach(el => {
+                el.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked slot
+            element.classList.add('selected');
+            selectedTimeSlot = slot;
+            
+            // Enable confirm button
+            document.getElementById('confirm-booking').disabled = false;
+        }
+
+        // Google Calendar Integration
+        document.getElementById('confirm-booking').addEventListener('click', function() {
+            if (!selectedTimeSlot) return;
+            
+            // Create Google Calendar link
+            const startTime = new Date();
+            // Set to tomorrow at the selected time (you can adjust this logic)
+            startTime.setDate(startTime.getDate() + 1);
+            startTime.setHours(parseInt(selectedTimeSlot.time.split(':')[0]), parseInt(selectedTimeSlot.time.split(':')[1]), 0, 0);
+            
+            const endTime = new Date(startTime.getTime() + 30 * 60 * 1000); // 30 minutes later
+            
+            const formatDate = (date) => {
+                return date.toISOString().replace(/-|:|\.\d+/g, '');
+            };
+
+            const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=DexterBI+Discovery+Call&details=Let%27s+discuss+how+DexterBI+can+help+transform+your+business+data+into+intelligent+insights.&location=Google+Meet&dates=${formatDate(startTime)}/${formatDate(endTime)}`;
+
+            // Open Google Calendar in new tab
+            window.open(calendarUrl, '_blank');
+            
+            // Close modal
+            closeScheduleModal();
+            
+            // Show confirmation message
+            alert('Thank you! You are being redirected to Google Calendar to confirm your booking.');
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('scheduleModal');
+            if (event.target === modal) {
+                closeScheduleModal();
             }
         });
 
@@ -571,4 +597,12 @@
             navLinks.forEach(link => {
                 link.classList.remove('text-indigo-600');
                 link.classList.add('text-gray-700');
-                if (link.getAttribute('href
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.remove('text-gray-700');
+                    link.classList.add('text-indigo-600');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
