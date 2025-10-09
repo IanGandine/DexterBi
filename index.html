@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DexterBI - Enterprise Business Intelligence Solutions</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
     <style>
         body {
             box-sizing: border-box;
@@ -46,44 +48,6 @@
             width: auto;
         }
         
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-        }
-        
-        .modal-content {
-            position: relative;
-            background: white;
-            margin: 5% auto;
-            padding: 0;
-            width: 90%;
-            max-width: 500px;
-            border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        }
-        
-        .close-button {
-            position: absolute;
-            right: 15px;
-            top: 15px;
-            font-size: 24px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            color: #6b7280;
-        }
-        
-        .close-button:hover {
-            color: #374151;
-        }
-        
         .schedule-btn {
             background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             color: white;
@@ -101,26 +65,6 @@
         .schedule-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
-        }
-        
-        .time-slot {
-            padding: 12px 16px;
-            border: 2px solid #e5e7eb;
-            border-radius: 8px;
-            margin: 8px 0;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        
-        .time-slot:hover {
-            border-color: #10b981;
-            background: #f0fdf4;
-        }
-        
-        .time-slot.selected {
-            border-color: #10b981;
-            background: #10b981;
-            color: white;
         }
     </style>
 </head>
@@ -140,7 +84,7 @@
                         <a href="#services" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Services</a>
                         <a href="#solutions" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Solutions</a>
                         <a href="#about" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">About</a>
-                        <button onclick="openScheduleModal()" class="schedule-btn text-sm">
+                        <button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/dexterbicontato/30min'});return false;" class="schedule-btn text-sm">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/>
                             </svg>
@@ -163,7 +107,7 @@
                 <a href="#services" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Services</a>
                 <a href="#solutions" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Solutions</a>
                 <a href="#about" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">About</a>
-                <button onclick="openScheduleModal()" class="block w-full text-left px-3 py-2 text-gray-700 hover:text-indigo-600 flex items-center gap-2">
+                <button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/dexterbicontato/30min'});return false;" class="block w-full text-left px-3 py-2 text-gray-700 hover:text-indigo-600 flex items-center gap-2">
                     <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/>
                     </svg>
@@ -185,7 +129,7 @@
                     DexterBI delivers enterprise-grade business intelligence solutions, custom dashboards, and end-to-end data analytics to drive your business forward.
                 </p>
                 <div class="space-x-4 fade-in stagger-2">
-                    <button onclick="openScheduleModal()" class="schedule-btn px-8 py-3 text-lg">
+                    <button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/dexterbicontato/30min'});return false;" class="schedule-btn px-8 py-3 text-lg">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/>
                         </svg>
@@ -210,6 +154,7 @@
             </div>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Seus cards de serviços aqui -->
                 <div class="bg-white p-8 rounded-xl shadow-lg card-hover fade-in">
                     <div class="w-16 h-16 bg-indigo-100 rounded-lg flex items-center justify-center mb-6">
                         <svg class="w-8 h-8 text-indigo-600" fill="currentColor" viewBox="0 0 24 24">
@@ -252,7 +197,7 @@
             </div>
             
             <div class="text-center mt-12">
-                <button onclick="openScheduleModal()" class="schedule-btn">
+                <button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/dexterbicontato/30min'});return false;" class="schedule-btn">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/>
                     </svg>
@@ -273,6 +218,7 @@
             </div>
             
             <div class="grid md:grid-cols-3 gap-8">
+                <!-- Seus cards de soluções aqui -->
                 <div class="text-center p-8 border border-gray-200 rounded-xl hover:border-indigo-300 transition-colors card-hover">
                     <div class="w-20 h-20 bg-indigo-600 rounded-full flex items-center justify-center mx-auto mb-6">
                         <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -320,7 +266,7 @@
             </div>
             
             <div class="text-center mt-12">
-                <button onclick="openScheduleModal()" class="schedule-btn">
+                <button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/dexterbicontato/30min'});return false;" class="schedule-btn">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/>
                     </svg>
@@ -379,7 +325,7 @@
                     </div>
                     
                     <div class="mt-8">
-                        <button onclick="openScheduleModal()" class="schedule-btn">
+                        <button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/dexterbicontato/30min'});return false;" class="schedule-btn">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/>
                             </svg>
@@ -412,35 +358,6 @@
         </div>
     </section>
 
-    <!-- Schedule Modal -->
-    <div id="scheduleModal" class="modal">
-        <div class="modal-content">
-            <button class="close-button" onclick="closeScheduleModal()">&times;</button>
-            <div class="p-8">
-                <h2 class="text-2xl font-bold text-gray-900 mb-2">Schedule a Discovery Call</h2>
-                <p class="text-gray-600 mb-6">Choose a time that works for you for a 30-minute Google Meet call</p>
-                
-                <div class="mb-6">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-3">Available Time Slots</h3>
-                    <div id="time-slots" class="space-y-2">
-                        <!-- Time slots will be populated by JavaScript -->
-                    </div>
-                </div>
-                
-                <div class="bg-blue-50 p-4 rounded-lg mb-6">
-                    <p class="text-sm text-blue-700">
-                        <strong>Note:</strong> After selecting a time, you'll be redirected to Google Calendar to confirm your booking. 
-                        The meeting will be held via Google Meet.
-                    </p>
-                </div>
-                
-                <button id="confirm-booking" class="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled>
-                    Confirm & Schedule on Google Calendar
-                </button>
-            </div>
-        </div>
-    </div>
-
     <script>
         // Mobile menu toggle
         document.getElementById('mobile-menu-btn').addEventListener('click', function() {
@@ -472,114 +389,6 @@
             });
         });
 
-        // Schedule Modal Functions
-        let selectedTimeSlot = null;
-
-        function openScheduleModal() {
-            document.getElementById('scheduleModal').style.display = 'block';
-            populateTimeSlots();
-        }
-
-        function closeScheduleModal() {
-            document.getElementById('scheduleModal').style.display = 'none';
-            selectedTimeSlot = null;
-            document.getElementById('confirm-booking').disabled = true;
-        }
-
-        function populateTimeSlots() {
-            const timeSlotsContainer = document.getElementById('time-slots');
-            timeSlotsContainer.innerHTML = '';
-            
-            // Sample time slots - you can customize these based on your availability
-            const timeSlots = [
-                { time: '09:00', date: 'Tomorrow', available: true },
-                { time: '10:30', date: 'Tomorrow', available: true },
-                { time: '14:00', date: 'Tomorrow', available: true },
-                { time: '15:30', date: 'Tomorrow', available: true },
-                { time: '11:00', date: 'In 2 days', available: true },
-                { time: '13:00', date: 'In 2 days', available: true },
-                { time: '16:00', date: 'In 2 days', available: true },
-                { time: '09:30', date: 'In 3 days', available: true },
-                { time: '14:30', date: 'In 3 days', available: true }
-            ];
-
-            timeSlots.forEach(slot => {
-                const slotElement = document.createElement('div');
-                slotElement.className = `time-slot ${slot.available ? 'available' : 'unavailable'}`;
-                slotElement.innerHTML = `
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <div class="font-semibold">${slot.time}</div>
-                            <div class="text-sm text-gray-500">${slot.date}</div>
-                        </div>
-                        ${slot.available ? 
-                            '<div class="text-green-600 text-sm">Available</div>' : 
-                            '<div class="text-red-600 text-sm">Unavailable</div>'
-                        }
-                    </div>
-                `;
-                
-                if (slot.available) {
-                    slotElement.addEventListener('click', () => selectTimeSlot(slot, slotElement));
-                } else {
-                    slotElement.style.opacity = '0.6';
-                    slotElement.style.cursor = 'not-allowed';
-                }
-                
-                timeSlotsContainer.appendChild(slotElement);
-            });
-        }
-
-        function selectTimeSlot(slot, element) {
-            // Remove selected class from all slots
-            document.querySelectorAll('.time-slot').forEach(el => {
-                el.classList.remove('selected');
-            });
-            
-            // Add selected class to clicked slot
-            element.classList.add('selected');
-            selectedTimeSlot = slot;
-            
-            // Enable confirm button
-            document.getElementById('confirm-booking').disabled = false;
-        }
-
-        // Google Calendar Integration
-        document.getElementById('confirm-booking').addEventListener('click', function() {
-            if (!selectedTimeSlot) return;
-            
-            // Create Google Calendar link
-            const startTime = new Date();
-            // Set to tomorrow at the selected time (you can adjust this logic)
-            startTime.setDate(startTime.getDate() + 1);
-            startTime.setHours(parseInt(selectedTimeSlot.time.split(':')[0]), parseInt(selectedTimeSlot.time.split(':')[1]), 0, 0);
-            
-            const endTime = new Date(startTime.getTime() + 30 * 60 * 1000); // 30 minutes later
-            
-            const formatDate = (date) => {
-                return date.toISOString().replace(/-|:|\.\d+/g, '');
-            };
-
-            const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=DexterBI+Discovery+Call&details=Let%27s+discuss+how+DexterBI+can+help+transform+your+business+data+into+intelligent+insights.&location=Google+Meet&dates=${formatDate(startTime)}/${formatDate(endTime)}`;
-
-            // Open Google Calendar in new tab
-            window.open(calendarUrl, '_blank');
-            
-            // Close modal
-            closeScheduleModal();
-            
-            // Show confirmation message
-            alert('Thank you! You are being redirected to Google Calendar to confirm your booking.');
-        });
-
-        // Close modal when clicking outside
-        window.addEventListener('click', function(event) {
-            const modal = document.getElementById('scheduleModal');
-            if (event.target === modal) {
-                closeScheduleModal();
-            }
-        });
-
         // Add active state to navigation based on scroll position
         window.addEventListener('scroll', function() {
             const sections = ['home', 'services', 'solutions', 'about', 'contact'];
@@ -603,6 +412,14 @@
                 }
             });
         });
+
+        // Função global para abrir Calendly
+        function openCalendly() {
+            Calendly.initPopupWidget({
+                url: 'https://calendly.com/dexterbicontato/30min'
+            });
+            return false;
+        }
     </script>
 </body>
 </html>
