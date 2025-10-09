@@ -470,8 +470,8 @@
             });
         });
 
-        // Resend configuration
-        const RESEND_API_KEY = 're_LZxw7Gg1_4EcjNDCcSNbbHiaRmQjzuizy'; 
+        // Resend configuration - SUA CHAVE AQUI
+        const RESEND_API_KEY = 're_LZxw7Gg1_4EcjNDCcSNbbHiaRmQjzuizy';
 
         // Contact form submission with Resend
         document.getElementById('contact-form').addEventListener('submit', async function(e) {
@@ -482,7 +482,7 @@
             const loadingSpinner = document.getElementById('loading-spinner');
             
             // Show loading state
-            submitText.textContent = 'Sending...';
+            submitText.textContent = 'Enviando...';
             loadingSpinner.style.display = 'inline-block';
             submitButton.disabled = true;
             
@@ -495,18 +495,35 @@
             
             try {
                 const response = await axios.post('https://api.resend.com/emails', {
-                    from: 'DexterBI Contact <onboarding@resend.dev>', // Use um email verificado no Resend
+                    from: 'DexterBI Website <onboarding@resend.dev>',
                     to: ['dexterbicontato@gmail.com'],
+                    reply_to: formData.email,
                     subject: `Novo contato de ${formData.name} - DexterBI`,
                     html: `
-                        <h2>Novo contato do site DexterBI</h2>
-                        <p><strong>Nome:</strong> ${formData.name}</p>
-                        <p><strong>Email:</strong> ${formData.email}</p>
-                        <p><strong>Empresa:</strong> ${formData.company || 'Não informado'}</p>
-                        <p><strong>Mensagem:</strong></p>
-                        <p>${formData.message}</p>
-                        <hr>
-                        <p><small>Enviado em: ${new Date().toLocaleString('pt-BR')}</small></p>
+                        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+                            <h2 style="color: #4f46e5;">Novo contato do site DexterBI</h2>
+                            <div style="background: #f9fafb; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                                <p><strong>Nome:</strong> ${formData.name}</p>
+                                <p><strong>Email:</strong> ${formData.email}</p>
+                                <p><strong>Empresa:</strong> ${formData.company || 'Não informado'}</p>
+                                <p><strong>Mensagem:</strong></p>
+                                <p style="background: white; padding: 15px; border-radius: 5px; border-left: 4px solid #4f46e5;">${formData.message}</p>
+                            </div>
+                            <hr style="border: none; border-top: 1px solid #e5e7eb;">
+                            <p style="color: #6b7280; font-size: 12px;">Enviado em: ${new Date().toLocaleString('pt-BR')}</p>
+                        </div>
+                    `,
+                    text: `
+                        Novo contato do site DexterBI
+                        
+                        Nome: ${formData.name}
+                        Email: ${formData.email}
+                        Empresa: ${formData.company || 'Não informado'}
+                        
+                        Mensagem:
+                        ${formData.message}
+                        
+                        Enviado em: ${new Date().toLocaleString('pt-BR')}
                     `
                 }, {
                     headers: {
@@ -515,12 +532,20 @@
                     }
                 });
                 
+                console.log('Email enviado com sucesso:', response.data);
                 alert(`Obrigado, ${formData.name}! Sua mensagem foi enviada com sucesso. Retornaremos em breve.`);
                 this.reset();
                 
             } catch (error) {
-                console.error('Erro ao enviar email:', error);
-                alert('Erro ao enviar mensagem. Por favor, tente novamente ou entre em contato diretamente por email.');
+                console.error('Erro detalhado ao enviar email:', error);
+                
+                // Mostrar erro mais específico
+                if (error.response) {
+                    console.error('Resposta do erro:', error.response.data);
+                    alert(`Erro ${error.response.status}: ${error.response.data.message || 'Erro ao enviar mensagem'}`);
+                } else {
+                    alert('Erro de conexão. Por favor, tente novamente ou entre em contato diretamente por email.');
+                }
             } finally {
                 // Reset button state
                 submitText.textContent = 'Send Message';
@@ -546,12 +571,4 @@
             navLinks.forEach(link => {
                 link.classList.remove('text-indigo-600');
                 link.classList.add('text-gray-700');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.remove('text-gray-700');
-                    link.classList.add('text-indigo-600');
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+                if (link.getAttribute('href
