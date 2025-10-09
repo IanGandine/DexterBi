@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DexterBI - Enterprise Business Intelligence Solutions</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <style>
         body {
             box-sizing: border-box;
@@ -44,6 +45,10 @@
         .logo-img {
             height: 45px;
             width: auto;
+        }
+        
+        .loading {
+            display: none;
         }
     </style>
 </head>
@@ -348,13 +353,7 @@
                 </div>
                 
                 <div class="bg-gray-50 p-8 rounded-xl">
-                    <form id="contact-form" class="space-y-6" action="https://formsubmit.co/dexterbicontato@gmail.com" method="POST">
-                        <!-- Configurações simples do FormSubmit -->
-                        <input type="hidden" name="_subject" value="Novo contato do site DexterBI">
-                        <input type="hidden" name="_template" value="basic">
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_autoresponse" value="Obrigado pelo seu contato! Recebemos sua mensagem e retornaremos em breve.">
-                        
+                    <form id="contact-form" class="space-y-6">
                         <div>
                             <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
                             <input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
@@ -375,8 +374,14 @@
                             <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"></textarea>
                         </div>
                         
-                        <button type="submit" class="w-full bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-colors">
-                            Send Message
+                        <button type="submit" class="w-full bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-colors flex items-center justify-center">
+                            <span id="submit-text">Send Message</span>
+                            <div id="loading-spinner" class="loading ml-2">
+                                <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                            </div>
                         </button>
                     </form>
                 </div>
@@ -465,16 +470,63 @@
             });
         });
 
-        // Contact form submission
-        document.getElementById('contact-form').addEventListener('submit', function(e) {
-            // Não prevenir o comportamento padrão - deixar o FormSubmit funcionar
-            const formData = new FormData(this);
-            const name = formData.get('name');
+        // Resend configuration
+        const RESEND_API_KEY = 're_LZxw7Gg1_4EcjNDCcSNbbHiaRmQjzuizy'; 
+
+        // Contact form submission with Resend
+        document.getElementById('contact-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
             
-            // Feedback visual imediato
-            alert(`Thank you, ${name}! Your message has been sent successfully. We'll get back to you soon.`);
+            const submitButton = this.querySelector('button[type="submit"]');
+            const submitText = document.getElementById('submit-text');
+            const loadingSpinner = document.getElementById('loading-spinner');
             
-            // O FormSubmit cuidará do redirecionamento e envio do email
+            // Show loading state
+            submitText.textContent = 'Sending...';
+            loadingSpinner.style.display = 'inline-block';
+            submitButton.disabled = true;
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                company: document.getElementById('company').value,
+                message: document.getElementById('message').value
+            };
+            
+            try {
+                const response = await axios.post('https://api.resend.com/emails', {
+                    from: 'DexterBI Contact <onboarding@resend.dev>', // Use um email verificado no Resend
+                    to: ['dexterbicontato@gmail.com'],
+                    subject: `Novo contato de ${formData.name} - DexterBI`,
+                    html: `
+                        <h2>Novo contato do site DexterBI</h2>
+                        <p><strong>Nome:</strong> ${formData.name}</p>
+                        <p><strong>Email:</strong> ${formData.email}</p>
+                        <p><strong>Empresa:</strong> ${formData.company || 'Não informado'}</p>
+                        <p><strong>Mensagem:</strong></p>
+                        <p>${formData.message}</p>
+                        <hr>
+                        <p><small>Enviado em: ${new Date().toLocaleString('pt-BR')}</small></p>
+                    `
+                }, {
+                    headers: {
+                        'Authorization': `Bearer ${RESEND_API_KEY}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                alert(`Obrigado, ${formData.name}! Sua mensagem foi enviada com sucesso. Retornaremos em breve.`);
+                this.reset();
+                
+            } catch (error) {
+                console.error('Erro ao enviar email:', error);
+                alert('Erro ao enviar mensagem. Por favor, tente novamente ou entre em contato diretamente por email.');
+            } finally {
+                // Reset button state
+                submitText.textContent = 'Send Message';
+                loadingSpinner.style.display = 'none';
+                submitButton.disabled = false;
+            }
         });
 
         // Add active state to navigation based on scroll position
