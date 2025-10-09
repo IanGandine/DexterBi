@@ -511,7 +511,9 @@
         </div>
     </footer>
 
-    <script>
+  <script>
+    // Esperar o DOM carregar completamente
+    document.addEventListener('DOMContentLoaded', function() {
         // Mobile menu toggle
         document.getElementById('mobile-menu-btn').addEventListener('click', function() {
             const mobileMenu = document.getElementById('mobile-menu');
@@ -521,13 +523,15 @@
         // Smooth scrolling for navigation links
         function scrollToSection(sectionId) {
             const element = document.getElementById(sectionId);
-            const navHeight = 80;
-            const elementPosition = element.offsetTop - navHeight;
-            
-            window.scrollTo({
-                top: elementPosition,
-                behavior: 'smooth'
-            });
+            if (element) {
+                const navHeight = 80;
+                const elementPosition = element.offsetTop - navHeight;
+                
+                window.scrollTo({
+                    top: elementPosition,
+                    behavior: 'smooth'
+                });
+            }
         }
 
         // Add click handlers to navigation links
@@ -538,7 +542,10 @@
                 scrollToSection(sectionId);
                 
                 // Close mobile menu if open
-                document.getElementById('mobile-menu').classList.add('hidden');
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (mobileMenu) {
+                    mobileMenu.classList.add('hidden');
+                }
             });
         });
 
@@ -550,9 +557,11 @@
             let current = '';
             sections.forEach(section => {
                 const element = document.getElementById(section);
-                const rect = element.getBoundingClientRect();
-                if (rect.top <= 100 && rect.bottom >= 100) {
-                    current = section;
+                if (element) {
+                    const rect = element.getBoundingClientRect();
+                    if (rect.top <= 100 && rect.bottom >= 100) {
+                        current = section;
+                    }
                 }
             });
             
@@ -573,7 +582,9 @@
             });
             return false;
         }
-    </script>
+    });
+</script>
 </body>
 </html>
+
 
