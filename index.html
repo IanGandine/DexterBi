@@ -67,6 +67,61 @@
             transform: translateY(-2px);
             box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
         }
+
+        /* Flip card styles */
+        .flip-card {
+            perspective: 1000px;
+            height: 280px;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 12px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .flip-card-front {
+            background: white;
+            color: #1f2937;
+        }
+
+        .flip-card-back {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        /* Animation classes */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body class="font-sans">
@@ -82,6 +137,7 @@
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-8">
                         <a href="#home" class="text-gray-900 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Home</a>
+                        <a href="#business-intelligence" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Business Intelligence</a>
                         <a href="#services" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Services</a>
                         <a href="#solutions" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Solutions</a>
                         <a href="#dashboards" class="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors">Dashboards</a>
@@ -107,6 +163,7 @@
         <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
             <div class="px-2 pt-2 pb-3 space-y-1">
                 <a href="#home" class="block px-3 py-2 text-gray-900 font-medium">Home</a>
+                <a href="#business-intelligence" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Business Intelligence</a>
                 <a href="#services" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Services</a>
                 <a href="#solutions" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Solutions</a>
                 <a href="#dashboards" class="block px-3 py-2 text-gray-700 hover:text-indigo-600">Dashboards</a>
@@ -140,7 +197,7 @@
                         </svg>
                         Schedule a Discovery!
                     </button>
-                    <button onclick="scrollToSection('services')" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-indigo-600 transition-colors">
+                    <button onclick="scrollToSection('business-intelligence')" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-indigo-600 transition-colors">
                         Learn More
                     </button>
                 </div>
@@ -148,10 +205,215 @@
         </div>
     </section>
 
+    <!-- Business Intelligence Section -->
+    <section id="business-intelligence" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Business Intelligence</h2>
+                <p class="text-xl text-gray-600 max-w-4xl mx-auto">
+                    The power and intelligence of data for effective results in your business
+                </p>
+            </div>
+            
+            <div class="mb-16 animate-on-scroll">
+                <p class="text-lg text-gray-700 mb-6">
+                    In the current organizational landscape, it is essential to act with speed and precision in strategic decision-making. It is in this context that Business Intelligence (BI) and Data Analytics (DA) stand out, playing important roles in transforming data into relevant information that helps business success. With BI and Data Analytics, your organization's decision-making and strategic planning become faster and more effective.
+                </p>
+                <p class="text-lg text-gray-700">
+                    These areas are responsible for providing the end user with data analysis in a clear and accessible way, supporting informed and strategic decisions.
+                </p>
+            </div>
+            
+            <div class="text-center mb-12 animate-on-scroll">
+                <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">Be data-driven with our Business Intelligence solutions</h3>
+                <p class="text-lg text-gray-700 max-w-3xl mx-auto mb-8">
+                    To obtain the best insights based on data, the analysis must be done efficiently from the beginning.
+                </p>
+                <p class="text-lg text-gray-700 max-w-3xl mx-auto">
+                    For example: the entire process of cleaning information, as well as connecting various sources cannot be done carelessly. Because of this, DexterBI works in more necessary areas for full data analysis:
+                </p>
+            </div>
+            
+            <!-- Flip Cards -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                <div class="flip-card animate-on-scroll">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front shadow-lg">
+                            <div class="w-16 h-16 bg-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                                </svg>
+                            </div>
+                            <h4 class="text-xl font-bold text-gray-900">Custom Dashboard Creation</h4>
+                        </div>
+                        <div class="flip-card-back">
+                            <h4 class="text-xl font-bold mb-4">Custom Dashboard Creation</h4>
+                            <p class="text-sm">Tailored dashboards that visualize your key metrics and KPIs with precision and clarity for informed decision-making.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flip-card animate-on-scroll">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front shadow-lg">
+                            <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                            </div>
+                            <h4 class="text-xl font-bold text-gray-900">Embedded BI Development</h4>
+                        </div>
+                        <div class="flip-card-back">
+                            <h4 class="text-xl font-bold mb-4">Embedded BI Development</h4>
+                            <p class="text-sm">Integrate BI capabilities directly into your existing applications and workflows for seamless data access.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flip-card animate-on-scroll">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front shadow-lg">
+                            <div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
+                                </svg>
+                            </div>
+                            <h4 class="text-xl font-bold text-gray-900">Self-Service BI Solutions</h4>
+                        </div>
+                        <div class="flip-card-back">
+                            <h4 class="text-xl font-bold mb-4">Self-Service BI Solutions</h4>
+                            <p class="text-sm">Empower your teams with tools to explore data and create their own reports without technical expertise.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flip-card animate-on-scroll">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front shadow-lg">
+                            <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                            </div>
+                            <h4 class="text-xl font-bold text-gray-900">Report Automation</h4>
+                        </div>
+                        <div class="flip-card-back">
+                            <h4 class="text-xl font-bold mb-4">Report Automation</h4>
+                            <p class="text-sm">Automate repetitive reporting tasks to save time and ensure consistent, timely delivery of insights.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- D.A.R. Method -->
+            <div class="bg-gray-50 rounded-2xl p-8 mb-16 animate-on-scroll">
+                <div class="text-center mb-10">
+                    <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">D.A.R. Method</h3>
+                    <p class="text-lg text-gray-700 max-w-4xl mx-auto">
+                        Data contains the answers to a multitude of questions considered essential for a business to achieve superior positions. Different hierarchical levels and sectors of a company have specific concerns and particularities. Therefore, it is unlikely that the same application or visualization serves everyone.
+                    </p>
+                    <p class="text-lg text-gray-700 max-w-4xl mx-auto mt-4">
+                        This is because excess or lack of information can both distract and hinder a user - or, worse, misinform them. Therefore, to ensure that the correct attention and information are extracted and applied, DexterBI's Business Intelligence team uses three different ways of exposing information:
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center p-6 bg-white rounded-xl shadow-md">
+                        <div class="w-16 h-16 bg-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                            </svg>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-900 mb-3">Dashboards</h4>
+                        <p class="text-gray-600">Macro version of your company's information. A dashboard contains the strategic KPIs for decision making.</p>
+                    </div>
+                    
+                    <div class="text-center p-6 bg-white rounded-xl shadow-md">
+                        <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-900 mb-3">Analysis</h4>
+                        <p class="text-gray-600">Panels with more filters, areas and charts. It has greater interactivity, allowing greater exploration by the user.</p>
+                    </div>
+                    
+                    <div class="text-center p-6 bg-white rounded-xl shadow-md">
+                        <div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
+                            </svg>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-900 mb-3">Reporting</h4>
+                        <p class="text-gray-600">A reporting has a greater amount of information, containing specific data about the organization and tables.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Benefits -->
+            <div class="animate-on-scroll">
+                <div class="text-center mb-10">
+                    <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Apply Business Intelligence to your business and improve</h3>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-md text-center">
+                        <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-6 h-6 text-indigo-600" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/>
+                            </svg>
+                        </div>
+                        <h4 class="text-lg font-semibold text-gray-900 mb-2">Customer Journey</h4>
+                        <p class="text-gray-600 text-sm">Understand and optimize every touchpoint in your customer's experience with your brand.</p>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-xl shadow-md text-center">
+                        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-6 h-6 text-purple-600" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                        </div>
+                        <h4 class="text-lg font-semibold text-gray-900 mb-2">Sales Volume & Profitability</h4>
+                        <p class="text-gray-600 text-sm">Track sales performance and profitability metrics to drive revenue growth.</p>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-xl shadow-md text-center">
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                            </svg>
+                        </div>
+                        <h4 class="text-lg font-semibold text-gray-900 mb-2">Organization Management</h4>
+                        <p class="text-gray-600 text-sm">Streamline operations and improve organizational efficiency with data-driven insights.</p>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-xl shadow-md text-center">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
+                            </svg>
+                        </div>
+                        <h4 class="text-lg font-semibold text-gray-900 mb-2">Company Productivity</h4>
+                        <p class="text-gray-600 text-sm">Identify bottlenecks and opportunities to enhance overall productivity across your organization.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12 animate-on-scroll">
+                <button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/dexterbicontato/30min'});return false;" class="schedule-btn">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/>
+                    </svg>
+                    Start Your BI Journey
+                </button>
+            </div>
+        </div>
+    </section>
+
     <!-- Services Section -->
     <section id="services" class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
+            <div class="text-center mb-16 animate-on-scroll">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Core Services</h2>
                 <p class="text-xl text-gray-600 max-w-2xl mx-auto">
                     Comprehensive business intelligence solutions tailored to your enterprise needs
@@ -159,7 +421,7 @@
             </div>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="bg-white p-8 rounded-xl shadow-lg card-hover fade-in">
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover animate-on-scroll">
                     <div class="w-16 h-16 bg-indigo-100 rounded-lg flex items-center justify-center mb-6">
                         <svg class="w-8 h-8 text-indigo-600" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
@@ -169,7 +431,7 @@
                     <p class="text-gray-600">Interactive, real-time dashboards designed to visualize your key metrics and KPIs with stunning clarity.</p>
                 </div>
                 
-                <div class="bg-white p-8 rounded-xl shadow-lg card-hover fade-in stagger-1">
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover animate-on-scroll">
                     <div class="w-16 h-16 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
                         <svg class="w-8 h-8 text-purple-600" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
@@ -179,7 +441,7 @@
                     <p class="text-gray-600">Advanced analytics and predictive modeling to uncover hidden patterns and drive strategic decisions.</p>
                 </div>
                 
-                <div class="bg-white p-8 rounded-xl shadow-lg card-hover fade-in stagger-2">
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover animate-on-scroll">
                     <div class="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mb-6">
                         <svg class="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
@@ -189,7 +451,7 @@
                     <p class="text-gray-600">Complete business intelligence platforms that integrate seamlessly with your existing systems.</p>
                 </div>
                 
-                <div class="bg-white p-8 rounded-xl shadow-lg card-hover fade-in stagger-3">
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover animate-on-scroll">
                     <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
                         <svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
@@ -200,7 +462,7 @@
                 </div>
             </div>
             
-            <div class="text-center mt-12">
+            <div class="text-center mt-12 animate-on-scroll">
                 <button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/dexterbicontato/30min'});return false;" class="schedule-btn">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/>
@@ -214,7 +476,7 @@
     <!-- Solutions Section -->
     <section id="solutions" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
+            <div class="text-center mb-16 animate-on-scroll">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Industry Solutions</h2>
                 <p class="text-xl text-gray-600 max-w-2xl mx-auto">
                     Specialized BI solutions designed for your industry's unique challenges
@@ -222,7 +484,7 @@
             </div>
             
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="text-center p-8 border border-gray-200 rounded-xl hover:border-indigo-300 transition-colors card-hover">
+                <div class="text-center p-8 border border-gray-200 rounded-xl hover:border-indigo-300 transition-colors card-hover animate-on-scroll">
                     <div class="w-20 h-20 bg-indigo-600 rounded-full flex items-center justify-center mx-auto mb-6">
                         <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
@@ -237,7 +499,7 @@
                     </ul>
                 </div>
                 
-                <div class="text-center p-8 border border-gray-200 rounded-xl hover:border-indigo-300 transition-colors card-hover">
+                <div class="text-center p-8 border border-gray-200 rounded-xl hover:border-indigo-300 transition-colors card-hover animate-on-scroll">
                     <div class="w-20 h-20 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
                         <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
@@ -252,7 +514,7 @@
                     </ul>
                 </div>
                 
-                <div class="text-center p-8 border border-gray-200 rounded-xl hover:border-indigo-300 transition-colors card-hover">
+                <div class="text-center p-8 border border-gray-200 rounded-xl hover:border-indigo-300 transition-colors card-hover animate-on-scroll">
                     <div class="w-20 h-20 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
                         <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
@@ -268,7 +530,7 @@
                 </div>
             </div>
             
-            <div class="text-center mt-12">
+            <div class="text-center mt-12 animate-on-scroll">
                 <button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/dexterbicontato/30min'});return false;" class="schedule-btn">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/>
@@ -282,7 +544,7 @@
     <!-- Examples of Dexter BI Dashboards Section -->
     <section id="dashboards" class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
+            <div class="text-center mb-16 animate-on-scroll">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Examples of Dexter BI Dashboards</h2>
                 <p class="text-xl text-gray-600 max-w-2xl mx-auto">
                     Explore our interactive dashboard examples to see how DexterBI transforms raw data into actionable insights
@@ -291,7 +553,7 @@
             
             <div class="grid md:grid-cols-2 gap-8 mb-12">
                 <!-- Sales & HR Dashboard -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover animate-on-scroll">
                     <div class="p-8">
                         <div class="flex items-center mb-4">
                             <div class="w-12 h-12 bg-indigo-600 rounded-lg flex items-center justify-center mr-4">
@@ -346,7 +608,7 @@
                 </div>
 
                 <!-- Spotify Analytics Dashboard -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover animate-on-scroll">
                     <div class="p-8">
                         <div class="flex items-center mb-4">
                             <div class="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mr-4">
@@ -401,7 +663,7 @@
                 </div>
             </div>
             
-            <div class="text-center">
+            <div class="text-center animate-on-scroll">
                 <p class="text-gray-600 mb-6">Interested in seeing more dashboard examples tailored to your industry?</p>
                 <button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/dexterbicontato/30min'});return false;" class="schedule-btn">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -417,7 +679,7 @@
     <section id="about" class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <div>
+                <div class="animate-on-scroll">
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Why Choose DexterBI?</h2>
                     <p class="text-lg text-gray-600 mb-8">
                         With over a decade of experience in business intelligence, we've helped hundreds of enterprises transform their data into actionable insights that drive growth and efficiency.
@@ -471,18 +733,18 @@
                     </div>
                 </div>
                 
-                <div class="bg-white p-8 rounded-xl shadow-lg">
+                <div class="bg-white p-8 rounded-xl shadow-lg animate-on-scroll">
                     <div class="grid grid-cols-2 gap-8 text-center">
                         <div>
-                            <div class="text-4xl font-bold text-indigo-600 mb-2">101</div>
+                            <div class="text-4xl font-bold text-indigo-600 mb-2 counter" data-target="101">0</div>
                             <div class="text-gray-600">Projects Delivered</div>
                         </div>
                         <div>
-                            <div class="text-4xl font-bold text-indigo-600 mb-2">98%</div>
+                            <div class="text-4xl font-bold text-indigo-600 mb-2 counter" data-target="98">0</div>
                             <div class="text-gray-600">Client Satisfaction</div>
                         </div>
                         <div>
-                            <div class="text-4xl font-bold text-indigo-600 mb-2">4+</div>
+                            <div class="text-4xl font-bold text-indigo-600 mb-2 counter" data-target="4">0</div>
                             <div class="text-gray-600">Years Experience</div>
                         </div>
                         <div>
@@ -498,7 +760,7 @@
     <!-- Contact Section -->
     <section id="contact" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
+            <div class="text-center mb-16 animate-on-scroll">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Get In Touch</h2>
                 <p class="text-xl text-gray-600 max-w-2xl mx-auto">
                     Ready to transform your data? Let's start the conversation.
@@ -506,7 +768,7 @@
             </div>
             
             <div class="grid lg:grid-cols-2 gap-12">
-                <div>
+                <div class="animate-on-scroll">
                     <h3 class="text-2xl font-semibold text-gray-900 mb-6">Contact Information</h3>
                     <div class="space-y-6">
                         <div class="flex items-center">
@@ -559,7 +821,7 @@
                     </div>
                 </div>
                 
-                <div class="bg-gray-50 p-8 rounded-xl">
+                <div class="bg-gray-50 p-8 rounded-xl animate-on-scroll">
                     <div class="text-center">
                         <h3 class="text-2xl font-semibold text-gray-900 mb-4">Schedule a Discovery Call</h3>
                         <p class="text-gray-600 mb-6">Book a 30-minute meeting to discuss how DexterBI can help transform your business data.</p>
@@ -687,7 +949,7 @@
 
         // Add active state to navigation based on scroll position
         window.addEventListener('scroll', function() {
-            const sections = ['home', 'services', 'solutions', 'dashboards', 'about', 'contact'];
+            const sections = ['home', 'business-intelligence', 'services', 'solutions', 'dashboards', 'about', 'contact'];
             const navLinks = document.querySelectorAll('nav a[href^="#"]');
             
             let current = '';
@@ -710,6 +972,58 @@
                 }
             });
         });
+
+        // Scroll animation
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('animated');
+                }
+            });
+        }
+
+        // Counter animation
+        function animateCounter() {
+            const counters = document.querySelectorAll('.counter');
+            const speed = 200;
+            
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+                const increment = target / speed;
+                
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + increment);
+                    setTimeout(() => animateCounter(), 1);
+                } else {
+                    counter.innerText = target;
+                }
+            });
+        }
+
+        // Initialize animations
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+        
+        // Initialize counter when About section is in view
+        const aboutSection = document.getElementById('about');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter();
+                    observer.unobserve(aboutSection);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        if (aboutSection) {
+            observer.observe(aboutSection);
+        }
 
         // Função global para abrir Calendly
         function openCalendly() {
