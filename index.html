@@ -1211,7 +1211,7 @@
                     // Business Intelligence Section
                     'bi.title': 'Business Intelligence',
                     'bi.subtitle': 'O poder e a inteligência dos dados para resultados eficazes no seu negócio',
-                    'bi.description1': 'No cenário organizacional atual, é essencial agir com rapidez e precisão na tomada de decisões estratégicas. É nesse contexto que Business Intelligence (BI) e Data Analytics (DA) se destacam, desempenhando papéis importantes na transformação de dados em informações relevantes que auxiliam o sucesso dos negócios. Com BI e Data Analytics, a tomada de decisão e o planejamento estratégico da sua organização tornam-se mais rápidos e eficazes.',
+                    'bi.description1': 'No cenário organizacional atual, é essencial agir com rapidez e precisão na tomada de decisões estratégicas. É nesse contexto que Business Intelligence (BI) e Data Analytics (DA) se destacam, desempenhando papéis importantes na transformação de dados em informações relevantes que auxiliam o sucesso dos negócios. Com BI and Data Analytics, a tomada de decisão e o planejamento estratégico da sua organização tornam-se mais rápidos e eficazes.',
                     'bi.description2': 'Essas áreas são responsáveis por fornecer ao usuário final a análise de dados de forma clara e acessível, apoiando decisões informadas e estratégicas.',
                     'bi.solutions_title': 'Seja data-driven com nossas soluções de Business Intelligence',
                     'bi.solutions_subtitle1': 'Para obter os melhores insights com base em dados, a análise deve ser feita com eficiência desde o início.',
@@ -1601,20 +1601,22 @@
                 });
             }
 
-            // Counter animation MAIS DEVAGAR
+            // Counter animation SIMULTÂNEA para todos os contadores
             function animateCounter() {
                 const counters = document.querySelectorAll('.counter');
-                const speed = 800; // Aumentado de 200 para 800 (4x mais devagar)
+                const speed = 1000; // Velocidade igual para todos
                 
+                // Calcular o incremento para cada contador baseado no valor final
                 counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    const count = +counter.innerText;
+                    const increment = target / speed;
+                    
+                    // Função de atualização para cada contador
                     const updateCount = () => {
-                        const target = +counter.getAttribute('data-target');
-                        const count = +counter.innerText;
-                        const increment = target / speed;
-                        
                         if (count < target) {
                             counter.innerText = Math.ceil(count + increment);
-                            setTimeout(updateCount, 20); // Aumentado de 10 para 20
+                            setTimeout(updateCount, 10);
                         } else {
                             counter.innerText = target;
                         }
@@ -1628,19 +1630,27 @@
             window.addEventListener('scroll', animateOnScroll);
             window.addEventListener('load', animateOnScroll);
             
-            // Initialize counter when About section is in view
+            // Initialize counter when About section is in view - CORRIGIDO PARA MOBILE
             const aboutSection = document.getElementById('about');
             let counterAnimated = false;
             
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting && !counterAnimated) {
-                        animateCounter();
-                        counterAnimated = true;
-                        observer.unobserve(aboutSection);
+                        // Verificar se estamos em mobile e ajustar o threshold
+                        const isMobile = window.innerWidth < 768;
+                        const threshold = isMobile ? 0.1 : 0.5;
+                        
+                        if (entry.intersectionRatio >= threshold) {
+                            animateCounter();
+                            counterAnimated = true;
+                            observer.unobserve(aboutSection);
+                        }
                     }
                 });
-            }, { threshold: 0.5 });
+            }, { 
+                threshold: [0.1, 0.5] // Observar tanto para mobile quanto desktop
+            });
             
             if (aboutSection) {
                 observer.observe(aboutSection);
