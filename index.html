@@ -1602,59 +1602,59 @@
             }
 
             // Counter animation SIMULTÂNEA para todos os contadores
-            function animateCounter() {
-                const counters = document.querySelectorAll('.counter');
-                const speed = 1000; // Velocidade igual para todos
-                
-                // Calcular o incremento para cada contador baseado no valor final
-                counters.forEach(counter => {
-                    const target = +counter.getAttribute('data-target');
-                    const count = +counter.innerText;
-                    const increment = target / speed;
-                    
-                    // Função de atualização para cada contador
-                    const updateCount = () => {
-                        if (count < target) {
-                            counter.innerText = Math.ceil(count + increment);
-                            setTimeout(updateCount, 10);
-                        } else {
-                            counter.innerText = target;
-                        }
-                    };
-                    
-                    updateCount();
-                });
+function animateCounter() {
+    const counters = document.querySelectorAll('.counter');
+    const speed = 2000; // Duração total da animação em ms
+    let hasAnimated = false;
+    
+    counters.forEach(counter => {
+        const target = +counter.getAttribute('data-target');
+        const count = +counter.innerText;
+        
+        // Função de atualização para cada contador
+        const updateCount = () => {
+            const increment = target / (speed / 16); // 60fps
+            const currentCount = +counter.innerText;
+            
+            if (currentCount < target) {
+                // Incrementar, mas não ultrapassar o target
+                const newCount = Math.min(Math.ceil(currentCount + increment), target);
+                counter.innerText = newCount;
+                requestAnimationFrame(updateCount);
+            } else {
+                counter.innerText = target;
             }
+        };
+        
+        updateCount();
+    });
+}
 
             // Initialize animations
             window.addEventListener('scroll', animateOnScroll);
             window.addEventListener('load', animateOnScroll);
             
             // Initialize counter when About section is in view - CORRIGIDO PARA MOBILE
-            const aboutSection = document.getElementById('about');
-            let counterAnimated = false;
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting && !counterAnimated) {
-                        // Verificar se estamos em mobile e ajustar o threshold
-                        const isMobile = window.innerWidth < 768;
-                        const threshold = isMobile ? 0.1 : 0.5;
-                        
-                        if (entry.intersectionRatio >= threshold) {
-                            animateCounter();
-                            counterAnimated = true;
-                            observer.unobserve(aboutSection);
-                        }
-                    }
-                });
-            }, { 
-                threshold: [0.1, 0.5] // Observar tanto para mobile quanto desktop
-            });
-            
-            if (aboutSection) {
-                observer.observe(aboutSection);
-            }
+           const aboutSection = document.getElementById('about');
+let counterAnimated = false;
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting && !counterAnimated) {
+            // Disparar a animação imediatamente quando a seção estiver visível
+            setTimeout(() => {
+                animateCounter();
+                counterAnimated = true;
+            }, 300); // Pequeno delay para melhor experiência
+        }
+    });
+}, { 
+    threshold: 0.1 // Apenas 10% da seção precisa estar visível
+});
+
+if (aboutSection) {
+    observer.observe(aboutSection);
+}
 
             // Função global para abrir Calendly
             function openCalendly() {
@@ -1667,3 +1667,4 @@
     </script>
 </body>
 </html>
+
