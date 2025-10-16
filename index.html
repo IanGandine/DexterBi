@@ -312,36 +312,62 @@
             font-weight: 700;
         }
 
-        /* Stats section styles */
+        /* Stats section styles - CARDS MAIORES */
         .stat-card {
             background: rgba(26, 35, 126, 0.15);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(0, 229, 255, 0.2);
-            border-radius: 12px;
-            padding: 2rem;
+            border-radius: 16px;
+            padding: 2.5rem 1.5rem;
             text-align: center;
             transition: all 0.3s ease;
             height: 100%;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         .stat-card:hover {
             transform: translateY(-5px);
             border-color: rgba(0, 229, 255, 0.4);
-            box-shadow: 0 10px 25px rgba(0, 229, 255, 0.15);
+            box-shadow: 0 15px 30px rgba(0, 229, 255, 0.2);
         }
 
         .stat-number {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: 800;
             color: var(--accent);
             margin-bottom: 0.5rem;
-            text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+            text-shadow: 0 0 15px rgba(0, 229, 255, 0.6);
+            line-height: 1;
         }
 
         .stat-label {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: var(--text-light);
             font-weight: 500;
+        }
+
+        /* Grid para os stats em uma linha */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 1024px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -745,9 +771,118 @@
         </div>
     </section>
 
-    <!-- Examples of Dexter BI Dashboards Section -->
-    <section id="dashboards" class="py-20 bg-gray-900 bg-opacity-50">
+    <!-- About Section - MOVIDA PARA CIMA -->
+    <section id="about" class="py-20 bg-gray-900 bg-opacity-50">
         <div class="section-bg"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="animate-on-scroll">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 glow-text" data-i18n="about.title">Why Choose DexterBI?</h2>
+                    <p class="text-lg text-gray-300 mb-8" data-i18n="about.description">
+                        With years of experience in business intelligence, we've helped various companies from different sectors transform their data into actionable insights that drive growth and efficiency.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 bg-cyan-500 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-shield-alt text-white text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-white mb-2" data-i18n="about.benefit1.title">Enterprise-Grade Security</h3>
+                                <p class="text-gray-300" data-i18n="about.benefit1.description">Bank-level security protocols to protect your most sensitive business data.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 bg-cyan-500 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-expand-arrows-alt text-white text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-white mb-2" data-i18n="about.benefit2.title">Scalable Solutions</h3>
+                                <p class="text-gray-300" data-i18n="about.benefit2.description">Built to grow with your business, from startup to enterprise scale.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STATS CARDS MAIORES EM UMA LINHA - ABAIXO DOS BENEFÍCIOS -->
+                    <div class="mt-8 animate-on-scroll">
+                        <div class="stats-grid">
+                            <!-- 4+ Years Experience -->
+                            <div class="stat-card">
+                                <div class="stat-number">
+                                    <span class="counter" data-target="4">0</span>+
+                                </div>
+                                <div class="stat-label" data-i18n="about.stats1">Years Experience</div>
+                            </div>
+                            
+                            <!-- 101+ Projects Delivered -->
+                            <div class="stat-card">
+                                <div class="stat-number">
+                                    <span class="counter" data-target="101">0</span>+
+                                </div>
+                                <div class="stat-label" data-i18n="about.stats2">Projects Delivered</div>
+                            </div>
+                            
+                            <!-- 24/7 Support -->
+                            <div class="stat-card">
+                                <div class="stat-number">24/7</div>
+                                <div class="stat-label" data-i18n="about.stats3">Support Available</div>
+                            </div>
+                            
+                            <!-- 1000+ Hours Invested -->
+                            <div class="stat-card">
+                                <div class="stat-number">
+                                    <span class="counter" data-target="1000">0</span>+
+                                </div>
+                                <div class="stat-label" data-i18n="about.stats4">Hours Invested</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/dexterbicontato/30min'});return false;" class="schedule-btn">
+                            <i class="fas fa-comments"></i>
+                            <span data-i18n="about.cta_button">Let's Talk About Your Project</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="animate-on-scroll">
+                    <div class="bg-gray-800 bg-opacity-50 rounded-2xl p-8 card-hover h-full">
+                        <div class="text-center">
+                            <i class="fas fa-chart-network text-cyan-400 text-6xl mb-6"></i>
+                            <h3 class="text-2xl font-bold text-white mb-4" data-i18n="about.expertise_title">Data Expertise</h3>
+                            <p class="text-gray-300 mb-6" data-i18n="about.expertise_description">
+                                Our team combines technical expertise with business acumen to deliver solutions that not only work technically but also drive real business value.
+                            </p>
+                            <div class="grid grid-cols-2 gap-4 text-left">
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-cyan-400 mr-2"></i>
+                                    <span class="text-gray-300" data-i18n="about.expertise1">Custom Solutions</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-cyan-400 mr-2"></i>
+                                    <span class="text-gray-300" data-i18n="about.expertise2">Fast Implementation</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-cyan-400 mr-2"></i>
+                                    <span class="text-gray-300" data-i18n="about.expertise3">Ongoing Support</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-cyan-400 mr-2"></i>
+                                    <span class="text-gray-300" data-i18n="about.expertise4">Training & Documentation</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Examples of Dexter BI Dashboards Section -->
+    <section id="dashboards" class="py-20">
+        <div class="section-bg grid-pattern"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 animate-on-scroll">
                 <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 glow-text" data-i18n="dashboards.title">Examples of Dexter BI Dashboards</h2>
@@ -854,95 +989,6 @@
                     <i class="fas fa-desktop"></i>
                     <span data-i18n="dashboards.cta_button">Schedule a Demo</span>
                 </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section COM NOVOS STATS -->
-    <section id="about" class="py-20">
-        <div class="section-bg grid-pattern"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <div class="animate-on-scroll">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 glow-text" data-i18n="about.title">Why Choose DexterBI?</h2>
-                    <p class="text-lg text-gray-300 mb-8" data-i18n="about.description">
-                        With over a decade of experience in business intelligence, we've helped hundreds of enterprises transform their data into actionable insights that drive growth and efficiency.
-                    </p>
-                    
-                    <div class="space-y-6">
-                        <div class="flex items-start">
-                            <div class="w-8 h-8 bg-cyan-500 rounded-full flex items-center justify-center mr-4 mt-1">
-                                <i class="fas fa-shield-alt text-white text-sm"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-semibold text-white mb-2" data-i18n="about.benefit1.title">Enterprise-Grade Security</h3>
-                                <p class="text-gray-300" data-i18n="about.benefit1.description">Bank-level security protocols to protect your most sensitive business data.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="w-8 h-8 bg-cyan-500 rounded-full flex items-center justify-center mr-4 mt-1">
-                                <i class="fas fa-expand-arrows-alt text-white text-sm"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-semibold text-white mb-2" data-i18n="about.benefit2.title">Scalable Solutions</h3>
-                                <p class="text-gray-300" data-i18n="about.benefit2.description">Built to grow with your business, from startup to enterprise scale.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="w-8 h-8 bg-cyan-500 rounded-full flex items-center justify-center mr-4 mt-1">
-                                <i class="fas fa-headset text-white text-sm"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-semibold text-white mb-2" data-i18n="about.benefit3.title">24/7 Support</h3>
-                                <p class="text-gray-300" data-i18n="about.benefit3.description">Round-the-clock technical support to keep your systems running smoothly.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="mt-8">
-                        <button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/dexterbicontato/30min'});return false;" class="schedule-btn">
-                            <i class="fas fa-comments"></i>
-                            <span data-i18n="about.cta_button">Let's Talk About Your Project</span>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- NOVOS STATS - 4 QUADRADOS MAIORES -->
-                <div class="animate-on-scroll">
-                    <div class="grid grid-cols-2 gap-6">
-                        <!-- 4+ Years Experience -->
-                        <div class="stat-card">
-                            <div class="stat-number">
-                                <span class="counter" data-target="4">0</span>+
-                            </div>
-                            <div class="stat-label" data-i18n="about.stats1">Years Experience</div>
-                        </div>
-                        
-                        <!-- 101+ Projects Delivered -->
-                        <div class="stat-card">
-                            <div class="stat-number">
-                                <span class="counter" data-target="101">0</span>+
-                            </div>
-                            <div class="stat-label" data-i18n="about.stats2">Projects Delivered</div>
-                        </div>
-                        
-                        <!-- 24/7 Support -->
-                        <div class="stat-card">
-                            <div class="stat-number">24/7</div>
-                            <div class="stat-label" data-i18n="about.stats3">Support Available</div>
-                        </div>
-                        
-                        <!-- 1000+ Hours Invested -->
-                        <div class="stat-card">
-                            <div class="stat-number">
-                                <span class="counter" data-target="1000">0</span>+
-                            </div>
-                            <div class="stat-label" data-i18n="about.stats4">Hours Invested</div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -1178,6 +1224,25 @@
                     'solutions.card3.item3': '• Visibilidade da cadeia de suprimentos',
                     'solutions.cta_button': 'Reserve Sua Sessão de Descoberta',
                     
+                    // About
+                    'about.title': 'Por Que Escolher a DexterBI?',
+                    'about.description': 'Com anos de experiência em business intelligence, ajudamos diversas empresas de diferentes setores a transformar seus dados em insights acionáveis que impulsionam o crescimento e a eficiência.',
+                    'about.benefit1.title': 'Segurança de Nível Empresarial',
+                    'about.benefit1.description': 'Protocolos de segurança de nível bancário para proteger seus dados de negócios mais sensíveis.',
+                    'about.benefit2.title': 'Soluções Escaláveis',
+                    'about.benefit2.description': 'Construídas para crescer com seu negócio, desde startup até escala empresarial.',
+                    'about.expertise_title': 'Expertise em Dados',
+                    'about.expertise_description': 'Nossa equipe combina expertise técnica com conhecimento de negócios para entregar soluções que não apenas funcionam tecnicamente, mas também geram valor real para o negócio.',
+                    'about.expertise1': 'Soluções Personalizadas',
+                    'about.expertise2': 'Implementação Rápida',
+                    'about.expertise3': 'Suporte Contínuo',
+                    'about.expertise4': 'Treinamento & Documentação',
+                    'about.stats1': 'Anos de Experiência',
+                    'about.stats2': 'Projetos Entregues',
+                    'about.stats3': 'Suporte Disponível',
+                    'about.stats4': 'Horas Investidas',
+                    'about.cta_button': 'Vamos Conversar Sobre Seu Projeto',
+                    
                     // Dashboards
                     'dashboards.title': 'Exemplos de Dashboards Dexter BI',
                     'dashboards.subtitle': 'Explore nossos exemplos de dashboards interativos para ver como a DexterBI transforma dados brutos em insights acionáveis',
@@ -1194,21 +1259,6 @@
                     'dashboards.explore_button': 'Explorar Dashboard',
                     'dashboards.interested_text': 'Interessado em ver mais exemplos de dashboards adaptados à sua indústria?',
                     'dashboards.cta_button': 'Agendar uma Demonstração',
-                    
-                    // About
-                    'about.title': 'Por Que Escolher a DexterBI?',
-                    'about.description': 'Com mais de uma década de experiência em business intelligence, ajudamos centenas de empresas a transformar seus dados em insights acionáveis que impulsionam o crescimento e a eficiência.',
-                    'about.benefit1.title': 'Segurança de Nível Empresarial',
-                    'about.benefit1.description': 'Protocolos de segurança de nível bancário para proteger seus dados de negócios mais sensíveis.',
-                    'about.benefit2.title': 'Soluções Escaláveis',
-                    'about.benefit2.description': 'Construídas para crescer com seu negócio, desde startup até escala empresarial.',
-                    'about.benefit3.title': 'Suporte 24/7',
-                    'about.benefit3.description': 'Suporte técnico ininterrupto para manter seus sistemas funcionando sem problemas.',
-                    'about.stats1': 'Anos de Experiência',
-                    'about.stats2': 'Projetos Entregues',
-                    'about.stats3': 'Suporte Disponível',
-                    'about.stats4': 'Horas Investidas',
-                    'about.cta_button': 'Vamos Conversar Sobre Seu Projeto',
                     
                     // Contact
                     'contact.title': 'Entre em Contato',
@@ -1321,6 +1371,25 @@
                     'solutions.card3.item3': '• Supply chain visibility',
                     'solutions.cta_button': 'Book Your Discovery Session',
                     
+                    // About
+                    'about.title': 'Why Choose DexterBI?',
+                    'about.description': 'With years of experience in business intelligence, we\'ve helped various companies from different sectors transform their data into actionable insights that drive growth and efficiency.',
+                    'about.benefit1.title': 'Enterprise-Grade Security',
+                    'about.benefit1.description': 'Bank-level security protocols to protect your most sensitive business data.',
+                    'about.benefit2.title': 'Scalable Solutions',
+                    'about.benefit2.description': 'Built to grow with your business, from startup to enterprise scale.',
+                    'about.expertise_title': 'Data Expertise',
+                    'about.expertise_description': 'Our team combines technical expertise with business acumen to deliver solutions that not only work technically but also drive real business value.',
+                    'about.expertise1': 'Custom Solutions',
+                    'about.expertise2': 'Fast Implementation',
+                    'about.expertise3': 'Ongoing Support',
+                    'about.expertise4': 'Training & Documentation',
+                    'about.stats1': 'Years Experience',
+                    'about.stats2': 'Projects Delivered',
+                    'about.stats3': 'Support Available',
+                    'about.stats4': 'Hours Invested',
+                    'about.cta_button': 'Let\'s Talk About Your Project',
+                    
                     // Dashboards
                     'dashboards.title': 'Examples of Dexter BI Dashboards',
                     'dashboards.subtitle': 'Explore our interactive dashboard examples to see how DexterBI transforms raw data into actionable insights',
@@ -1337,21 +1406,6 @@
                     'dashboards.explore_button': 'Explore Dashboard',
                     'dashboards.interested_text': 'Interested in seeing more dashboard examples tailored to your industry?',
                     'dashboards.cta_button': 'Schedule a Demo',
-                    
-                    // About
-                    'about.title': 'Why Choose DexterBI?',
-                    'about.description': 'With over a decade of experience in business intelligence, we\'ve helped hundreds of enterprises transform their data into actionable insights that drive growth and efficiency.',
-                    'about.benefit1.title': 'Enterprise-Grade Security',
-                    'about.benefit1.description': 'Bank-level security protocols to protect your most sensitive business data.',
-                    'about.benefit2.title': 'Scalable Solutions',
-                    'about.benefit2.description': 'Built to grow with your business, from startup to enterprise scale.',
-                    'about.benefit3.title': '24/7 Support',
-                    'about.benefit3.description': 'Round-the-clock technical support to keep your systems running smoothly.',
-                    'about.stats1': 'Years Experience',
-                    'about.stats2': 'Projects Delivered',
-                    'about.stats3': 'Support Available',
-                    'about.stats4': 'Hours Invested',
-                    'about.cta_button': 'Let\'s Talk About Your Project',
                     
                     // Contact
                     'contact.title': 'Get In Touch',
@@ -1454,7 +1508,7 @@
 
             // Add active state to navigation based on scroll position
             window.addEventListener('scroll', function() {
-                const sections = ['home', 'business-intelligence', 'services', 'solutions', 'dashboards', 'about', 'contact'];
+                const sections = ['home', 'business-intelligence', 'services', 'solutions', 'about', 'dashboards', 'contact'];
                 const navLinks = document.querySelectorAll('nav a[href^="#"]');
                 
                 let current = '';
