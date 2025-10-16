@@ -78,23 +78,40 @@
         .stagger-3 { animation-delay: 0.3s; }
         .stagger-4 { animation-delay: 0.4s; }
         
-        /* LOGO AUMENTADA - TAMANHO PRINCIPAL */
+        /* LOGO MUITO MAIOR - TAMANHO PRINCIPAL */
         .logo-img {
-            height: 60px; /* Aumentado de 45px para 60px */
+            height: 80px; /* Aumentado para 80px (era 45px) */
             width: auto;
             transition: all 0.3s ease;
         }
         
-        /* Logo ainda maior em telas desktop */
+        /* Logo ainda MUITO maior em telas desktop */
         @media (min-width: 768px) {
             .logo-img {
-                height: 70px; /* Ainda maior em desktop */
+                height: 100px; /* Aumentado para 100px em desktop */
+            }
+        }
+
+        /* Logo extra grande em telas grandes */
+        @media (min-width: 1024px) {
+            .logo-img {
+                height: 120px; /* Extra grande para telas grandes */
             }
         }
         
-        /* Ajuste na altura do navbar para acomodar a logo maior */
+        /* Ajuste na altura do navbar para acomodar a logo MUITO maior */
         nav .flex.justify-between.items-center {
-            height: 90px; /* Aumentado de 80px para 90px */
+            height: 110px; /* Aumentado para 110px (era 80px) */
+        }
+
+        /* Ajuste no mobile para logo menor mas ainda grande */
+        @media (max-width: 767px) {
+            .logo-img {
+                height: 70px; /* Ainda grande no mobile */
+            }
+            nav .flex.justify-between.items-center {
+                height: 90px; /* Menor no mobile */
+            }
         }
 
         .schedule-btn {
@@ -297,13 +314,13 @@
     </style>
 </head>
 <body class="font-sans">
-    <!-- Navigation COM LOGO AUMENTADA -->
+    <!-- Navigation COM LOGO MUITO MAIOR -->
     <nav class="bg-opacity-90 shadow-lg fixed w-full top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-24"> <!-- Aumentado de h-20 para h-24 -->
+            <div class="flex justify-between items-center h-28"> <!-- Aumentado para h-28 (112px) -->
                 <div class="flex items-center">
                     <div class="flex-shrink-0 flex items-center">
-                        <!-- Logo aumentada -->
+                        <!-- Logo MUITO aumentada -->
                         <img src="src/dexter_logo.png" alt="DexterBI Logo" class="logo-img">
                     </div>
                 </div>
@@ -369,8 +386,8 @@
         </div>
     </nav>
 
-    <!-- Hero Section - Ajustado o padding-top para acomodar a navbar maior -->
-    <section id="home" class="gradient-bg pt-28 pb-16"> <!-- Aumentado de pt-24 para pt-28 -->
+    <!-- Hero Section - Ajustado o padding-top para acomodar a navbar MUITO maior -->
+    <section id="home" class="gradient-bg pt-32 pb-16"> <!-- Aumentado para pt-32 -->
         <div class="section-bg"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
             <div class="text-center">
@@ -1456,5 +1473,6 @@
     </script>
 </body>
 </html>
+
 
 
