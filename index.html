@@ -78,11 +78,25 @@
         .stagger-3 { animation-delay: 0.3s; }
         .stagger-4 { animation-delay: 0.4s; }
         
+        /* LOGO AUMENTADA - TAMANHO PRINCIPAL */
         .logo-img {
-            height: 45px;
+            height: 60px; /* Aumentado de 45px para 60px */
             width: auto;
+            transition: all 0.3s ease;
         }
         
+        /* Logo ainda maior em telas desktop */
+        @media (min-width: 768px) {
+            .logo-img {
+                height: 70px; /* Ainda maior em desktop */
+            }
+        }
+        
+        /* Ajuste na altura do navbar para acomodar a logo maior */
+        nav .flex.justify-between.items-center {
+            height: 90px; /* Aumentado de 80px para 90px */
+        }
+
         .schedule-btn {
             background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
             color: var(--primary);
@@ -283,12 +297,13 @@
     </style>
 </head>
 <body class="font-sans">
-    <!-- Navigation -->
+    <!-- Navigation COM LOGO AUMENTADA -->
     <nav class="bg-opacity-90 shadow-lg fixed w-full top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
+            <div class="flex justify-between items-center h-24"> <!-- Aumentado de h-20 para h-24 -->
                 <div class="flex items-center">
                     <div class="flex-shrink-0 flex items-center">
+                        <!-- Logo aumentada -->
                         <img src="src/dexter_logo.png" alt="DexterBI Logo" class="logo-img">
                     </div>
                 </div>
@@ -354,8 +369,8 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="gradient-bg pt-24 pb-16">
+    <!-- Hero Section - Ajustado o padding-top para acomodar a navbar maior -->
+    <section id="home" class="gradient-bg pt-28 pb-16"> <!-- Aumentado de pt-24 para pt-28 -->
         <div class="section-bg"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
             <div class="text-center">
@@ -1441,4 +1456,5 @@
     </script>
 </body>
 </html>
+
 
