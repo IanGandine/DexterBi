@@ -311,6 +311,38 @@
         h1, h2, h3, h4 {
             font-weight: 700;
         }
+
+        /* Stats section styles */
+        .stat-card {
+            background: rgba(26, 35, 126, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 229, 255, 0.4);
+            box-shadow: 0 10px 25px rgba(0, 229, 255, 0.15);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
     </style>
 </head>
 <body class="font-sans">
@@ -713,7 +745,7 @@
         </div>
     </section>
 
-        <!-- Examples of Dexter BI Dashboards Section -->
+    <!-- Examples of Dexter BI Dashboards Section -->
     <section id="dashboards" class="py-20 bg-gray-900 bg-opacity-50">
         <div class="section-bg"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -826,9 +858,7 @@
         </div>
     </section>
 
-    
-
-    <!-- About Section -->
+    <!-- About Section COM NOVOS STATS -->
     <section id="about" class="py-20">
         <div class="section-bg grid-pattern"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -879,29 +909,37 @@
                     </div>
                 </div>
                 
-                <div class="bg-gray-800 bg-opacity-50 p-8 rounded-xl shadow-lg animate-on-scroll card-hover">
-                    <div class="grid grid-cols-2 gap-8 text-center">
-                        <div>
-                            <div class="text-4xl font-bold text-cyan-400 mb-2 counter-element">
-                                <span class="counter" data-target="101">0</span>+
-                            </div>
-                            <div class="text-gray-300" data-i18n="about.stats1">Projects Delivered</div>
-                        </div>
-                        <div>
-                            <div class="text-4xl font-bold text-cyan-400 mb-2 counter-element">
-                                <span class="counter" data-target="98">0</span>%
-                            </div>
-                            <div class="text-gray-300" data-i18n="about.stats2">Client Satisfaction</div>
-                        </div>
-                        <div>
-                            <div class="text-4xl font-bold text-cyan-400 mb-2 counter-element">
+                <!-- NOVOS STATS - 4 QUADRADOS MAIORES -->
+                <div class="animate-on-scroll">
+                    <div class="grid grid-cols-2 gap-6">
+                        <!-- 4+ Years Experience -->
+                        <div class="stat-card">
+                            <div class="stat-number">
                                 <span class="counter" data-target="4">0</span>+
                             </div>
-                            <div class="text-gray-300" data-i18n="about.stats3">Years Experience</div>
+                            <div class="stat-label" data-i18n="about.stats1">Years Experience</div>
                         </div>
-                        <div>
-                            <div class="text-4xl font-bold text-cyan-400 mb-2">24/7</div>
-                            <div class="text-gray-300" data-i18n="about.stats4">Support Available</div>
+                        
+                        <!-- 101+ Projects Delivered -->
+                        <div class="stat-card">
+                            <div class="stat-number">
+                                <span class="counter" data-target="101">0</span>+
+                            </div>
+                            <div class="stat-label" data-i18n="about.stats2">Projects Delivered</div>
+                        </div>
+                        
+                        <!-- 24/7 Support -->
+                        <div class="stat-card">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label" data-i18n="about.stats3">Support Available</div>
+                        </div>
+                        
+                        <!-- 1000+ Hours Invested -->
+                        <div class="stat-card">
+                            <div class="stat-number">
+                                <span class="counter" data-target="1000">0</span>+
+                            </div>
+                            <div class="stat-label" data-i18n="about.stats4">Hours Invested</div>
                         </div>
                     </div>
                 </div>
@@ -1120,6 +1158,43 @@
                     'services.card4.description': 'Da coleta de dados à visualização, cuidamos de todos os aspectos da sua jornada de business intelligence.',
                     'services.cta_button': 'Agendar uma Chamada de Descoberta',
                     
+                    // Solutions
+                    'solutions.title': 'Soluções por Indústria',
+                    'solutions.subtitle': 'Soluções de BI especializadas projetadas para os desafios únicos da sua indústria',
+                    'solutions.card1.title': 'Serviços Financeiros',
+                    'solutions.card1.description': 'Análise de risco, relatórios de conformidade e dashboards de desempenho para instituições financeiras.',
+                    'solutions.card1.item1': '• Monitoramento de risco em tempo real',
+                    'solutions.card1.item2': '• Acompanhamento de conformidade regulatória',
+                    'solutions.card1.item3': '• Análise de desempenho de portfólio',
+                    'solutions.card2.title': 'Varejo e E-commerce',
+                    'solutions.card2.description': 'Análise de clientes, otimização de estoque e acompanhamento de desempenho de vendas.',
+                    'solutions.card2.item1': '• Análise de comportamento do cliente',
+                    'solutions.card2.item2': '• Previsão de estoque',
+                    'solutions.card2.item3': '• Visualização de tendências de vendas',
+                    'solutions.card3.title': 'Manufatura',
+                    'solutions.card3.description': 'Análise de produção, controle de qualidade e otimização da cadeia de suprimentos.',
+                    'solutions.card3.item1': '• Acompanhamento da eficiência de produção',
+                    'solutions.card3.item2': '• Monitoramento de métricas de qualidade',
+                    'solutions.card3.item3': '• Visibilidade da cadeia de suprimentos',
+                    'solutions.cta_button': 'Reserve Sua Sessão de Descoberta',
+                    
+                    // Dashboards
+                    'dashboards.title': 'Exemplos de Dashboards Dexter BI',
+                    'dashboards.subtitle': 'Explore nossos exemplos de dashboards interativos para ver como a DexterBI transforma dados brutos em insights acionáveis',
+                    'dashboards.card1.title': 'Dashboard de Análise de Vendas e RH',
+                    'dashboards.card1.description': 'Dashboard abrangente que combina métricas de desempenho de vendas com análises de RH para uma visão holística das operações de negócios.',
+                    'dashboards.card1.item1': 'Acompanhamento de vendas em tempo real',
+                    'dashboards.card1.item2': 'Métricas de desempenho dos funcionários',
+                    'dashboards.card1.item3': 'Insights entre departamentos',
+                    'dashboards.card2.title': 'Dashboard de Análise do Spotify',
+                    'dashboards.card2.description': 'Este dashboard fornece uma análise interativa e perspicaz do comportamento e desempenho dos usuários do Spotify, focando no engajamento, churn e hábitos de escuta. Ele destaca padrões entre tipos de assinatura, faixas etárias, países e uso de dispositivos para apoiar decisões baseadas em dados.',
+                    'dashboards.card2.item1': 'Análise de engajamento e churn do usuário',
+                    'dashboards.card2.item2': 'Padrões de tipo de assinatura',
+                    'dashboards.card2.item3': 'Insights demográficos e geográficos',
+                    'dashboards.explore_button': 'Explorar Dashboard',
+                    'dashboards.interested_text': 'Interessado em ver mais exemplos de dashboards adaptados à sua indústria?',
+                    'dashboards.cta_button': 'Agendar uma Demonstração',
+                    
                     // About
                     'about.title': 'Por Que Escolher a DexterBI?',
                     'about.description': 'Com mais de uma década de experiência em business intelligence, ajudamos centenas de empresas a transformar seus dados em insights acionáveis que impulsionam o crescimento e a eficiência.',
@@ -1129,10 +1204,10 @@
                     'about.benefit2.description': 'Construídas para crescer com seu negócio, desde startup até escala empresarial.',
                     'about.benefit3.title': 'Suporte 24/7',
                     'about.benefit3.description': 'Suporte técnico ininterrupto para manter seus sistemas funcionando sem problemas.',
-                    'about.stats1': 'Projetos Entregues',
-                    'about.stats2': 'Satisfação do Cliente',
-                    'about.stats3': 'Anos de Experiência',
-                    'about.stats4': 'Suporte Disponível',
+                    'about.stats1': 'Anos de Experiência',
+                    'about.stats2': 'Projetos Entregues',
+                    'about.stats3': 'Suporte Disponível',
+                    'about.stats4': 'Horas Investidas',
                     'about.cta_button': 'Vamos Conversar Sobre Seu Projeto',
                     
                     // Contact
@@ -1226,6 +1301,43 @@
                     'services.card4.description': 'From data collection to visualization, we handle every aspect of your business intelligence journey.',
                     'services.cta_button': 'Schedule a Discovery Call',
                     
+                    // Solutions
+                    'solutions.title': 'Industry Solutions',
+                    'solutions.subtitle': 'Specialized BI solutions designed for your industry\'s unique challenges',
+                    'solutions.card1.title': 'Financial Services',
+                    'solutions.card1.description': 'Risk analytics, compliance reporting, and performance dashboards for financial institutions.',
+                    'solutions.card1.item1': '• Real-time risk monitoring',
+                    'solutions.card1.item2': '• Regulatory compliance tracking',
+                    'solutions.card1.item3': '• Portfolio performance analysis',
+                    'solutions.card2.title': 'Retail & E-commerce',
+                    'solutions.card2.description': 'Customer analytics, inventory optimization, and sales performance tracking.',
+                    'solutions.card2.item1': '• Customer behavior analysis',
+                    'solutions.card2.item2': '• Inventory forecasting',
+                    'solutions.card2.item3': '• Sales trend visualization',
+                    'solutions.card3.title': 'Manufacturing',
+                    'solutions.card3.description': 'Production analytics, quality control, and supply chain optimization.',
+                    'solutions.card3.item1': '• Production efficiency tracking',
+                    'solutions.card3.item2': '• Quality metrics monitoring',
+                    'solutions.card3.item3': '• Supply chain visibility',
+                    'solutions.cta_button': 'Book Your Discovery Session',
+                    
+                    // Dashboards
+                    'dashboards.title': 'Examples of Dexter BI Dashboards',
+                    'dashboards.subtitle': 'Explore our interactive dashboard examples to see how DexterBI transforms raw data into actionable insights',
+                    'dashboards.card1.title': 'Sales & HR Analytics Dashboard',
+                    'dashboards.card1.description': 'Comprehensive dashboard combining sales performance metrics with HR analytics for a holistic view of business operations.',
+                    'dashboards.card1.item1': 'Real-time sales tracking',
+                    'dashboards.card1.item2': 'Employee performance metrics',
+                    'dashboards.card1.item3': 'Cross-department insights',
+                    'dashboards.card2.title': 'Spotify Analytics Dashboard',
+                    'dashboards.card2.description': 'This dashboard provides an interactive and insightful analysis of Spotify user behavior and performance, focusing on engagement, churn, and listening habits. It highlights patterns across subscription types, age groups, countries, and device usage to support data-driven decisions.',
+                    'dashboards.card2.item1': 'User engagement & churn analysis',
+                    'dashboards.card2.item2': 'Subscription type patterns',
+                    'dashboards.card2.item3': 'Demographic & geographic insights',
+                    'dashboards.explore_button': 'Explore Dashboard',
+                    'dashboards.interested_text': 'Interested in seeing more dashboard examples tailored to your industry?',
+                    'dashboards.cta_button': 'Schedule a Demo',
+                    
                     // About
                     'about.title': 'Why Choose DexterBI?',
                     'about.description': 'With over a decade of experience in business intelligence, we\'ve helped hundreds of enterprises transform their data into actionable insights that drive growth and efficiency.',
@@ -1235,10 +1347,10 @@
                     'about.benefit2.description': 'Built to grow with your business, from startup to enterprise scale.',
                     'about.benefit3.title': '24/7 Support',
                     'about.benefit3.description': 'Round-the-clock technical support to keep your systems running smoothly.',
-                    'about.stats1': 'Projects Delivered',
-                    'about.stats2': 'Client Satisfaction',
-                    'about.stats3': 'Years Experience',
-                    'about.stats4': 'Support Available',
+                    'about.stats1': 'Years Experience',
+                    'about.stats2': 'Projects Delivered',
+                    'about.stats3': 'Support Available',
+                    'about.stats4': 'Hours Invested',
                     'about.cta_button': 'Let\'s Talk About Your Project',
                     
                     // Contact
@@ -1259,44 +1371,7 @@
                     'footer.industries_title': 'Industries',
                     'footer.contact_title': 'Contact',
                     'footer.privacy': 'Privacy Policy',
-                    'footer.terms': 'Terms of Service',
-
-
-'solutions.title': 'Soluções por Indústria',
-'solutions.subtitle': 'Soluções de BI especializadas projetadas para os desafios únicos da sua indústria',
-'solutions.card1.title': 'Serviços Financeiros',
-'solutions.card1.description': 'Análise de risco, relatórios de conformidade e dashboards de desempenho para instituições financeiras.',
-'solutions.card1.item1': '• Monitoramento de risco em tempo real',
-'solutions.card1.item2': '• Acompanhamento de conformidade regulatória',
-'solutions.card1.item3': '• Análise de desempenho de portfólio',
-'solutions.card2.title': 'Varejo e E-commerce',
-'solutions.card2.description': 'Análise de clientes, otimização de estoque e acompanhamento de desempenho de vendas.',
-'solutions.card2.item1': '• Análise de comportamento do cliente',
-'solutions.card2.item2': '• Previsão de estoque',
-'solutions.card2.item3': '• Visualização de tendências de vendas',
-'solutions.card3.title': 'Manufatura',
-'solutions.card3.description': 'Análise de produção, controle de qualidade e otimização da cadeia de suprimentos.',
-'solutions.card3.item1': '• Acompanhamento da eficiência de produção',
-'solutions.card3.item2': '• Monitoramento de métricas de qualidade',
-'solutions.card3.item3': '• Visibilidade da cadeia de suprimentos',
-'solutions.cta_button': 'Reserve Sua Sessão de Descoberta',
-
-// Dashboards translations
-'dashboards.title': 'Exemplos de Dashboards Dexter BI',
-'dashboards.subtitle': 'Explore nossos exemplos de dashboards interativos para ver como a DexterBI transforma dados brutos em insights acionáveis',
-'dashboards.card1.title': 'Dashboard de Análise de Vendas e RH',
-'dashboards.card1.description': 'Dashboard abrangente que combina métricas de desempenho de vendas com análises de RH para uma visão holística das operações de negócios.',
-'dashboards.card1.item1': 'Acompanhamento de vendas em tempo real',
-'dashboards.card1.item2': 'Métricas de desempenho dos funcionários',
-'dashboards.card1.item3': 'Insights entre departamentos',
-'dashboards.card2.title': 'Dashboard de Análise do Spotify',
-'dashboards.card2.description': 'Este dashboard fornece uma análise interativa e perspicaz do comportamento e desempenho dos usuários do Spotify, focando no engajamento, churn e hábitos de escuta. Ele destaca padrões entre tipos de assinatura, faixas etárias, países e uso de dispositivos para apoiar decisões baseadas em dados.',
-'dashboards.card2.item1': 'Análise de engajamento e churn do usuário',
-'dashboards.card2.item2': 'Padrões de tipo de assinatura',
-'dashboards.card2.item3': 'Insights demográficos e geográficos',
-'dashboards.explore_button': 'Explorar Dashboard',
-'dashboards.interested_text': 'Interessado em ver mais exemplos de dashboards adaptados à sua indústria?',
-'dashboards.cta_button': 'Agendar uma Demonstração'
+                    'footer.terms': 'Terms of Service'
                 }
             };
 
@@ -1417,10 +1492,10 @@
                 });
             }
 
-            // Counter animation
+            // Counter animation MAIS DEVAGAR
             function animateCounter() {
                 const counters = document.querySelectorAll('.counter');
-                const speed = 200;
+                const speed = 800; // Aumentado de 200 para 800 (4x mais devagar)
                 
                 counters.forEach(counter => {
                     const updateCount = () => {
@@ -1430,7 +1505,7 @@
                         
                         if (count < target) {
                             counter.innerText = Math.ceil(count + increment);
-                            setTimeout(updateCount, 10);
+                            setTimeout(updateCount, 20); // Aumentado de 10 para 20
                         } else {
                             counter.innerText = target;
                         }
@@ -1473,7 +1548,3 @@
     </script>
 </body>
 </html>
-
-
-
-
